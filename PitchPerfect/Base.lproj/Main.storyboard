@@ -19,32 +19,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNN-lt-WTF">
-                                <state key="normal" image="recordButton"/>
-                                <connections>
-                                    <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Twr-wR-kga"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSS-y7-AQe">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kHf-yL-jh2">
-                                <state key="normal" image="stopRecordingButton"/>
-                                <connections>
-                                    <action selector="stopRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XtZ-Jl-u0j"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="vI5-bG-5XR">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNN-lt-WTF">
+                                        <state key="normal" image="recordButton"/>
+                                        <connections>
+                                            <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Twr-wR-kga"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSS-y7-AQe">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kHf-yL-jh2">
+                                        <state key="normal" image="stopRecordingButton"/>
+                                        <connections>
+                                            <action selector="stopRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XtZ-Jl-u0j"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="TSS-y7-AQe" firstAttribute="centerX" secondItem="DNN-lt-WTF" secondAttribute="centerX" id="183-dq-EYW"/>
-                            <constraint firstItem="DNN-lt-WTF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6tp-hE-5Hi"/>
-                            <constraint firstItem="TSS-y7-AQe" firstAttribute="top" secondItem="DNN-lt-WTF" secondAttribute="bottom" constant="22" id="9yw-ze-dB1"/>
-                            <constraint firstItem="DNN-lt-WTF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="HBH-HZ-kVj"/>
-                            <constraint firstItem="kHf-yL-jh2" firstAttribute="centerX" secondItem="TSS-y7-AQe" secondAttribute="centerX" id="R5B-R4-VhC"/>
-                            <constraint firstItem="kHf-yL-jh2" firstAttribute="top" secondItem="TSS-y7-AQe" secondAttribute="bottom" constant="14" id="l49-sW-WBa"/>
+                            <constraint firstItem="vI5-bG-5XR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="UXK-LJ-DKE"/>
+                            <constraint firstItem="vI5-bG-5XR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dG0-a1-SkH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="neo-NO-VYg"/>
