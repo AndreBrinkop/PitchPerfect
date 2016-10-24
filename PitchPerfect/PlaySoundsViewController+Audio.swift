@@ -42,6 +42,13 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         // initialize audio engine components
         audioEngine = AVAudioEngine()
         
+        let session:AVAudioSession = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions.defaultToSpeaker)
+        } catch {
+            // if can't use speaker use the default audio route
+        }
+        
         // node for playing audio
         audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attach(audioPlayerNode)
@@ -94,8 +101,11 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
             }
             
             // schedule a stop timer for when audio finishes playing
-            self.stopTimer = Timer(timeInterval: delayInSeconds, target: self, selector: #selector(PlaySoundsViewController.stopAudio), userInfo: nil, repeats: false)
-            RunLoop.main.add(self.stopTimer!, forMode: RunLoopMode.defaultRunLoopMode)
+            if self.stopButton.isEnabled {
+                self.stopTimer = Timer(timeInterval: delayInSeconds, target: self, selector: #selector(PlaySoundsViewController.stopAudio), userInfo: nil, repeats: false)
+                RunLoop.main.add(self.stopTimer!, forMode: RunLoopMode.defaultRunLoopMode)
+            }
+            
         }
         
         do {
