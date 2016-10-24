@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		907AD8511DBE3BF200081DD7 /* PlaySoundsViewController+Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907AD8501DBE3BF200081DD7 /* PlaySoundsViewController+Audio.swift */; };
 		90D3E82B1DBBEB97002835B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D3E82A1DBBEB97002835B5 /* AppDelegate.swift */; };
 		90D3E82D1DBBEB97002835B5 /* RecordSoundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D3E82C1DBBEB97002835B5 /* RecordSoundsViewController.swift */; };
 		90D3E8301DBBEB97002835B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90D3E82E1DBBEB97002835B5 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		907AD8501DBE3BF200081DD7 /* PlaySoundsViewController+Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlaySoundsViewController+Audio.swift"; sourceTree = "<group>"; };
 		90D3E8271DBBEB97002835B5 /* PitchPerfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PitchPerfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D3E82A1DBBEB97002835B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90D3E82C1DBBEB97002835B5 /* RecordSoundsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSoundsViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				90D3E82A1DBBEB97002835B5 /* AppDelegate.swift */,
 				90D3E82C1DBBEB97002835B5 /* RecordSoundsViewController.swift */,
 				90FB603C1DBCF57E00DDCBA8 /* PlaySoundsViewController.swift */,
+				907AD8501DBE3BF200081DD7 /* PlaySoundsViewController+Audio.swift */,
 				90D3E82E1DBBEB97002835B5 /* Main.storyboard */,
 				90D3E8311DBBEB97002835B5 /* Assets.xcassets */,
 				90D3E8331DBBEB97002835B5 /* LaunchScreen.storyboard */,
@@ -99,6 +102,8 @@
 				TargetAttributes = {
 					90D3E8261DBBEB97002835B5 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = J2YTLC2SAF;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -140,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90D3E82D1DBBEB97002835B5 /* RecordSoundsViewController.swift in Sources */,
+				907AD8511DBE3BF200081DD7 /* PlaySoundsViewController+Audio.swift in Sources */,
 				90FB603D1DBCF57F00DDCBA8 /* PlaySoundsViewController.swift in Sources */,
 				90D3E82B1DBBEB97002835B5 /* AppDelegate.swift in Sources */,
 			);
@@ -264,6 +270,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = J2YTLC2SAF;
 				INFOPLIST_FILE = PitchPerfect/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.brinkop.andre.PitchPerfect;
@@ -276,6 +283,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = J2YTLC2SAF;
 				INFOPLIST_FILE = PitchPerfect/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.brinkop.andre.PitchPerfect;
