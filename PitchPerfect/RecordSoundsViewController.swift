@@ -14,11 +14,16 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var recordingLabel: UILabel!
     @IBOutlet weak var stopRecordingButton: UIButton!
+    @IBOutlet weak var audioMeterConstraint: NSLayoutConstraint!
+    @IBOutlet weak var audioMeter: UIView!
+    @IBOutlet weak var audioMeterView: UIView!
     
     var audioRecorder:AVAudioRecorder!
+    var isRecording: Bool = false
     
     override func viewWillAppear(_ animated: Bool) {
         stopRecordingButton.isEnabled = false
+        audioMeter.isHidden = true
     }
     
     @IBAction func recordAudio(_ sender: AnyObject) {
@@ -40,7 +45,20 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder.delegate = self
         audioRecorder.isMeteringEnabled = true
         audioRecorder.prepareToRecord()
+        
         audioRecorder.record()
+        isRecording = true
+        
+        OperationQueue().addOperation({[weak self] in
+            repeat {
+                self?.audioRecorder.updateMeters()
+                let averagePower = (self?.audioRecorder.averagePower(forChannel: 0))!
+                self?.setAudioMeter(currentPower: averagePower)
+
+                Thread.sleep(forTimeInterval: 0.025)
+            }
+                while (self?.isRecording)!
+            })
     }
 
     @IBAction func stopRecording(_ sender: AnyObject) {
@@ -48,8 +66,10 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         recordingLabel.text = "Tap to Record"
         stopRecordingButton.isEnabled = false
         recordButton.isEnabled = true
+        audioMeter.isHidden = true
         
         audioRecorder.stop()
+        isRecording = false
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
     }
@@ -63,12 +83,39 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "stopRecording" {
             let playSoundsVC = segue.destination as! PlaySoundsViewController
             let recordedAudioURL = sender as! NSURL
             playSoundsVC.recordedAudioURL = recordedAudioURL
         }
+    }
+    
+    private func setAudioMeter(currentPower: Float) {
+        let normalizedPower : Float! = getNormalizedMeterLevel(currentPower: currentPower)
+        
+        let viewHeight: CGFloat! = audioMeterView.frame.size.height
+        let meterLevel = viewHeight * CGFloat(normalizedPower)
+        
+        audioMeter.isHidden = false
+        DispatchQueue.main.async {
+            self.audioMeterConstraint.constant = viewHeight - meterLevel
+        }
+    }
+    
+    private func getNormalizedMeterLevel(currentPower: Float) -> Float {
+        var normalizedPower = currentPower + 60 // using 60 instead of 160 to remove noise
+        normalizedPower = normalizedPower / 60
+        
+        if normalizedPower < 0 {
+            normalizedPower = 0
+        }
+        if normalizedPower > 1 {
+            normalizedPower = 1
+        }
+        
+        return normalizedPower
     }
     
 }

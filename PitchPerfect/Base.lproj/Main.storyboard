@@ -19,6 +19,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O7R-Uv-OvG" userLabel="AudioMeterView">
+                                <subviews>
+                                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AcL-1W-1lN" userLabel="AudioMeter">
+                                        <color key="backgroundColor" red="0.12941819429397583" green="0.28552341461181641" blue="0.43598988652229309" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="AcL-1W-1lN" secondAttribute="trailing" id="Jja-QO-OFl"/>
+                                    <constraint firstItem="AcL-1W-1lN" firstAttribute="leading" secondItem="O7R-Uv-OvG" secondAttribute="leading" id="dbY-n7-pUL"/>
+                                    <constraint firstItem="AcL-1W-1lN" firstAttribute="top" secondItem="O7R-Uv-OvG" secondAttribute="top" id="haZ-uJ-XRv"/>
+                                    <constraint firstAttribute="bottom" secondItem="AcL-1W-1lN" secondAttribute="bottom" id="xcN-7G-kCH"/>
+                                </constraints>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="vI5-bG-5XR">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNN-lt-WTF">
@@ -39,16 +52,27 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="kHf-yL-jh2" firstAttribute="leading" secondItem="vI5-bG-5XR" secondAttribute="leading" constant="29" id="KgX-bx-XR2"/>
+                                    <constraint firstItem="DNN-lt-WTF" firstAttribute="leading" secondItem="vI5-bG-5XR" secondAttribute="leading" constant="4" id="daE-FY-UJl"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="vI5-bG-5XR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="UXK-LJ-DKE"/>
-                            <constraint firstItem="vI5-bG-5XR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dG0-a1-SkH"/>
+                            <constraint firstItem="vI5-bG-5XR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PG3-EU-IHk"/>
+                            <constraint firstItem="O7R-Uv-OvG" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="R8Y-oU-Ml4"/>
+                            <constraint firstItem="O7R-Uv-OvG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ZYZ-nZ-DtN"/>
+                            <constraint firstItem="O7R-Uv-OvG" firstAttribute="centerX" secondItem="vI5-bG-5XR" secondAttribute="centerX" id="ahf-V3-Jdn"/>
+                            <constraint firstItem="vI5-bG-5XR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gkx-dO-yhI"/>
+                            <constraint firstItem="O7R-Uv-OvG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="hYa-DL-s2s"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="neo-NO-VYg"/>
                     <connections>
+                        <outlet property="audioMeter" destination="AcL-1W-1lN" id="NKc-aH-w1m"/>
+                        <outlet property="audioMeterConstraint" destination="haZ-uJ-XRv" id="zIp-wL-QKj"/>
+                        <outlet property="audioMeterView" destination="O7R-Uv-OvG" id="nQj-0J-wOV"/>
                         <outlet property="recordButton" destination="DNN-lt-WTF" id="6xE-8A-F89"/>
                         <outlet property="recordingLabel" destination="TSS-y7-AQe" id="3Hf-Gr-Kjj"/>
                         <outlet property="stopRecordingButton" destination="kHf-yL-jh2" id="Nu9-xe-f2L"/>
