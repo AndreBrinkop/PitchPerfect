@@ -28,9 +28,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBAction func recordAudio(_ sender: AnyObject) {
         print("record button pressed")
-        recordingLabel.text = "Recording in progress"
-        stopRecordingButton.isEnabled = true
-        recordButton.isEnabled = false
+        configureUI(isRecording: true)
         
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask, true)[0] as String
         let recordingName = "recordedVoice.wav"
@@ -63,9 +61,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
     @IBAction func stopRecording(_ sender: AnyObject) {
         print("stop recording button pressed")
-        recordingLabel.text = "Tap to Record"
-        stopRecordingButton.isEnabled = false
-        recordButton.isEnabled = true
+        configureUI(isRecording: false)
         audioMeter.isHidden = true
         
         audioRecorder.stop()
@@ -77,9 +73,13 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully successful: Bool) {
         print("AVAudioRecorder finished saving recording")
         if successful {
-            self.performSegue(withIdentifier: "stopRecording", sender: audioRecorder.url)
+            performSegue(withIdentifier: "stopRecording", sender: audioRecorder.url)
         } else {
-            print("Saving of recording failed")
+            let message = "Saving of recording failed"
+            let alert = UIAlertController(title: "Recording failed", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            print(message)
         }
     }
     
@@ -108,14 +108,13 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         var normalizedPower = currentPower + 60 // using 60 instead of 160 to remove noise
         normalizedPower = normalizedPower / 60
         
-        if normalizedPower < 0 {
-            normalizedPower = 0
-        }
-        if normalizedPower > 1 {
-            normalizedPower = 1
-        }
-        
-        return normalizedPower
+        return max(min(normalizedPower, 1), 0)
+    }
+    
+    private func configureUI(isRecording: Bool) {
+        recordingLabel.text = isRecording ? "Recording in progress" : "Tap to Record"
+        stopRecordingButton.isEnabled = isRecording
+        recordButton.isEnabled = !isRecording
     }
     
 }
