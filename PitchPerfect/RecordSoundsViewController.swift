@@ -10,6 +10,8 @@ import UIKit
 import AVFoundation
 
 class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
+    
+    let defaultRecordingLabelString = "Tap to Record"
 
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var recordingLabel: UILabel!
@@ -26,7 +28,15 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         audioMeter.isHidden = true
     }
     
-    @IBAction func recordAudio(_ sender: AnyObject) {
+    @IBAction func tapRecordingLabel() {
+        if recordingLabel.text! == defaultRecordingLabelString {
+            recordAudio()
+        } else {
+            stopRecording()
+        }
+    }
+    
+    @IBAction func recordAudio() {
         print("record button pressed")
         configureUI(isRecording: true)
         
@@ -59,7 +69,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             })
     }
 
-    @IBAction func stopRecording(_ sender: AnyObject) {
+    @IBAction func stopRecording() {
         print("stop recording button pressed")
         configureUI(isRecording: false)
         audioMeter.isHidden = true
@@ -112,7 +122,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     private func configureUI(isRecording: Bool) {
-        recordingLabel.text = isRecording ? "Recording in progress" : "Tap to Record"
+        recordingLabel.text = isRecording ? "Recording in progress" : defaultRecordingLabelString
         stopRecordingButton.isEnabled = isRecording
         recordButton.isEnabled = !isRecording
     }
